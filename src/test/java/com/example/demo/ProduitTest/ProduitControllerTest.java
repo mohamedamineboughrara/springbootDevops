@@ -8,13 +8,10 @@ import com.example.demo.repository.CategorieRepository;
 import com.example.demo.repository.ProduitRepository;
 import com.example.demo.services.IProduitService;
 import com.example.demo.services.IcategorieService;
-import jakarta.transaction.Transactional;
 import org.junit.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 import com.example.demo.controller.ProduitController;
 import com.example.demo.entity.Produit;
@@ -23,8 +20,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
-@Transactional
-@ExtendWith(SpringExtension.class)
+
+@RunWith(SpringRunner.class)
 @SpringBootTest
 public class ProduitControllerTest {
 
