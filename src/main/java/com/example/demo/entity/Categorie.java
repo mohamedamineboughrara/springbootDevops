@@ -38,7 +38,7 @@ public class  Categorie implements Serializable {
    @LastModifiedDate
     private Date dateModification ;
     @JsonManagedReference
-    @OneToMany(mappedBy = "categorie", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "categorie", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 
     private List<Produit> produits = new ArrayList<>();
 
