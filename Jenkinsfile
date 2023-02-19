@@ -40,7 +40,7 @@ pipeline {
                 sh 'mvn sonar:sonar  -Dsonar.projectKey=jenkins  -Dsonar.host.url=http://localhost:9000    -Dsonar.login=228ccbd355b9274ed27e6e397ebb13953eecbe5a'
             }
         }
-        stage('Mvn deploy') {
+        stage('deploy to nexus3') {
             steps {
             script {
                 nexusArtifactUploader artifacts:
@@ -60,5 +60,13 @@ pipeline {
               }
             }
         }
+        	 stage('Build docker image'){
+                                                         steps{
+                                                             script{
+                                                                sh 'docker build -t mohamedamineboughrara/demo .'
+                                                             }
+                                                         }
+                                                     }
+
       }
     }
