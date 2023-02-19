@@ -40,5 +40,8 @@ pipeline {
                 sh 'mvn sonar:sonar  -Dsonar.projectKey=jenkins  -Dsonar.host.url=http://localhost:9000    -Dsonar.login=228ccbd355b9274ed27e6e397ebb13953eecbe5a'
             }
         }
+        stage('Mvn deploy ') {
+               steps{ sh'mvn clean deploy -Dmaven.test.skip=true -Dresume=false' }
+                              }
     }
 }
