@@ -18,6 +18,18 @@
 		<sonar.coverage.jacoco.xmlReportPaths>
 			../app-it/target/site/jacoco-aggregate/jacoco.xml
 		</sonar.coverage.jacoco.xmlReportPaths>
+		<!-- Deploy to Nexus -->
+		<distributionManagement>
+			<repository>
+				<id>my-nexus-repo</id>
+				<url>http://localhost:8082/repository/maven-releases/</url>
+			</repository>
+			<snapshotRepository>
+				<id>my-nexus-snapshots</id>
+				<url>http://localhost:8082/repository/maven-snapshots/</url>
+			</snapshotRepository>
+		</distributionManagement>
+
 	</properties>
 
 	<dependencies>
@@ -76,6 +88,7 @@
 
 
 	<build>
+
 		<plugins>
 
 			<plugin>
