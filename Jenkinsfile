@@ -60,13 +60,15 @@ pipeline {
               }
             }
         }
-        	 stage('Build docker image'){
-                      steps{
-                              script{
-                                  sh 'docker build -t mohamedamineboughrara/demo .'
-                                                  }
-                                                }
-                                            }
+        stage('Build docker image') {
+          steps {
+            script {
+              docker.image('docker:dind').inside {
+                sh 'docker build -t mohamedamineboughrara/demo .'
+              }
+            }
+          }
+        }
                 stage('Docker login') {
 
                                 steps {
