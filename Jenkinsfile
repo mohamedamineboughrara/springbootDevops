@@ -48,7 +48,7 @@ pipeline {
                    [
                    artifactId: 'demo',
                     classifier: '',
-                    file: 'target/Demo.jar',
+                    file: 'target/demo-1.0.0.jar',
                      type: 'jar']],
                       credentialsId: 'bf65d7cd-e3b1-4e10-b35a-4b744d895583',
                        groupId: 'com.example',
