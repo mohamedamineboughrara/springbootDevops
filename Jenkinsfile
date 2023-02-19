@@ -42,7 +42,22 @@ pipeline {
         }
         stage('Mvn deploy') {
             steps {
-                 sh "mvn clean deploy -Dmaven.test.skip=true -Dresume=false -DaltDeploymentRepository=my-nexus-repo::default::http://localhost:8082/repository/maven-releases/ -Dusername=admin -Dpassword=nexus"
+            script {
+                nexusArtifactUploader artifacts:
+                  [
+                   [
+                   artifactId: 'demo',
+                    classifier: '',
+                    file: 'target/Demo.jar',
+                     type: 'jar']],
+                      credentialsId: 'bf65d7cd-e3b1-4e10-b35a-4b744d895583',
+                       groupId: 'com.example',
+                        nexusUrl: 'localhost:8082',
+                         nexusVersion: 'nexus3',
+                          protocol: 'http',
+                           repository: 'my-nexus-repo',
+                            version: '1.0.0'
+              }
             }
         }
       }
