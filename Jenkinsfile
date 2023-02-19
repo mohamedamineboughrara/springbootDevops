@@ -42,7 +42,7 @@ pipeline {
         }
         stage('Mvn deploy') {
             steps {
-                sh "mvn clean deploy -Dmaven.test.skip=true -Dresume=false -DaltDeploymentRepository=my-nexus-repo::default::http://localhost:8082/repository/maven-releases/"
+                 sh "mvn clean deploy -Dmaven.test.skip=true -Dresume=false -DaltDeploymentRepository=my-nexus-repo::default::http://localhost:8082/repository/maven-releases/ -Dusername=admin -Dpassword=nexus"
             }
         }
       }
