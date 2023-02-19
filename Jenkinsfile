@@ -61,12 +61,24 @@ pipeline {
             }
         }
         	 stage('Build docker image'){
-                                                         steps{
-                                                             script{
-                                                                sh 'docker build -t mohamedamineboughrara/demo .'
-                                                             }
-                                                         }
-                                                     }
+                      steps{
+                              script{
+                                  sh 'docker build -t mohamedamineboughrara/demo .'
+                                                  }
+                                                }
+                                            }
+                stage('Docker login') {
+
+                                steps {
+                                  sh 'echo "login Docker ...."'
+                                  sh 'docker login -u mohamedamineboughrara -p azerty123'
+                                             }  }
+                stage('Docker push') {
+
+                                steps {
+                                    sh 'echo "Docker is pushing ...."'
+                                	sh 'docker push mohamedamineboughrara/demo'
+                                             }  }
 
       }
     }
