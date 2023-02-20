@@ -80,11 +80,7 @@ pipeline {
                                 	sh 'docker push mohamedamineboughrara/demo'
                                              }  }
 
-                 stage('Sending Mail'){
-                                  steps{
-                                    mail ( body: 'Congratulations! your DevOps project pipeline was completed succesfully!', subject: 'Pipeline', to: 'boughhh1111@gmail.com')
-                                                         }
-                                                     }
+
 
       }
     }
