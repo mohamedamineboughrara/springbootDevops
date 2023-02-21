@@ -1,37 +1,35 @@
 version: '3.7'
+
 services:
-  
   angular-app:
     image: mohamedamineboughrara/angular-app:latest
     ports:
-      - 4200:4200
+      - 82:82
     depends_on:
-      - app
+      - demo-app
 
   demo-db:
     container_name: demo-db
-    image: postgres:latesr
+    image: postgres:latest
     networks:
       - demo-network
     environment:
       - POSTGRES_USER=new_user
       - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=achatdb
-
+      - POSTGRES_DB=demo-db
     volumes:
       - dbvol:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "5433:5432"
     restart: always
-     demo-app:
+
+  demo-app:
     build:
       context: .
     container_name: demo-spring
     image: mohamedamineboughrara/demo:latest
     ports:
-      - "8081:8081"
-    networks:
-      - demo-network
+      - "8089:8089"
     depends_on:
       - demo-db
     environment:
@@ -39,13 +37,16 @@ services:
       - POSTGRES_USER=new_user
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=demo
-      - POSTGRES_PORT=5432
-     networks:
-       tpachat-network:
-        name: demo-network
+      - POSTGRES_PORT=5433
+    networks:
+      - demo-network
+    volumes:
+      - dbvol:/var/lib/postgresql/data
 
-     volumes:
-       dbvol:
-      
-     
-    
+networks:
+  demo-network:
+    driver: bridge
+
+volumes:
+  dbvol:
+
